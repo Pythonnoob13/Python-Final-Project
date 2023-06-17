@@ -1,0 +1,28 @@
+{% block content %}
+    <center>
+      {% if searched %}
+        <h1>you search for {{ searched }}</h1>
+        <a href="{% url 'home' %}"><h3>Go back</h3></a>
+
+        <br/>
+          {% for ques in questions %}
+            
+              
+            <a href="{% url 'vote' ques.id %}"> {{ques}} </a>
+
+            
+
+              
+            
+            <br/>
+
+          {% endfor %}
+      {% else %}
+        <h1>Oops...</h1>
+        <a href="{% url 'home' %}"><h3>Go back</h3></a>
+      {% endif %}
+    </center>
+
+
+
+{% endblock %}

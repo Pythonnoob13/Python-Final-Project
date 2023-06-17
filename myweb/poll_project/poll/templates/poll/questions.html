@@ -1,0 +1,43 @@
+{% extends "poll/base.html" %}
+
+{% block title %}questions{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center><h3 class="panel-title">Available questions </h3></center>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <ul class="list-group">
+                
+                {% for poll in polls %}
+                <h3>{{ poll.question }}</h3> 
+                <h5>Published {{ poll.pub_date }}</h5>                
+                <h5>last edited {{ poll.last_edited }}</h5>    
+                <li class="list-group-item">
+                    <!-- <strong>{{ poll.question }}</strong> -->
+                    <span class="pull-right">
+                      {% if user.is_authenticated %}
+
+      
+                      {% endif %}
+                      <a href="{% url 'vote' poll.id %}" class="btn btn-info btn-xs">Vote</a> &nbsp;
+                      <a href="{% url 'results' poll.id %}" class="btn btn-default btn-xs">View Results</a> &nbsp;
+                      <a href="{% url 'update-question' poll.id %}" class="btn btn-outline-secondary btn-xs">Update question</a> &nbsp;
+                      {% if user.is_superuser %}
+                      <a href="{% url 'delete-question' poll.id %}" class="btn btn-outline-danger btn-xs">Delete</a> &nbsp;
+                        {% endif %}
+                    </span>
+                </li>
+                {% endfor %} 
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "poll/base.html" %}
+{% block main %}
+
+
+<div>
+  {% if user.is_superuser %}
+  <h1><h1>ADMIN profile page</h1> </h1>
+  {% else %}
+    <strong>User profile page</strong> 
+  {% endif %}
+</div>
+
+<div>
+  {% if user.is_superuser %}
+  <h1>Administration: <strong>{{ user }}</strong> </h1>
+  {% else %}
+    username: <strong>{{ user }}</strong> 
+  {% endif %}
+</div>
+
+<br>
+<br>
+<!-- user_profile.html -->
+<h1>{{ user.username }}</h1>
+<p>Registered on: {{ registration_date }}</p>
+<p>Polls created: {{ poll_count }}</p>
+<!-- You can add more information or customize the template as desired -->
+
+
+
+
+
+
+{% endblock %}

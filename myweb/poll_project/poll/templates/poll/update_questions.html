@@ -1,0 +1,36 @@
+
+{% block content %}
+{% if user.is_authenticated %}
+  {% if user.id == poll.owner or user.is_superuser %}
+  <!-- {{ poll.owner }}
+  {{ poll.manager }} -->
+
+  
+    <h1>Update question...</h1>
+    <br>
+    <form method="POST">
+      {% csrf_token %}
+
+      {{ form.as_p }}
+
+      <br>
+      <input type="submit" value="Update" class="btn btn-secondary">
+    {% else %}
+    <h1> you can't update this poll</h1>
+    <a href="{% url 'questions' %}">Go back</a>
+    </form> 
+    {% endif %}
+     
+    
+
+{% else %}
+  <h1>Oops... you must be logged in to view this page</h1>
+  <a href="{% url 'login' %}">logging here</a>
+  </form>
+{% endif %}
+
+
+
+
+
+{% endblock %}
